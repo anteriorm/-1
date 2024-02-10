@@ -1,0 +1,37 @@
+a = int(input("Кол-во чисел: "))
+n = []
+for i in range(a):
+    n.append(input())
+print(n)
+
+book = {
+    "0" : "Ноль",
+    "1" : "Один",
+    "2" : "Два",
+    "3" : "Три",
+    "4" : "Четыре",
+    "5" : "Пять",
+    "6" : "Шесть",
+    "7" : "Семь",
+}
+
+for i in n:
+
+    min = 100000000
+    max = 0
+    u = str(i)
+
+    for j in range(len(u)):
+        q = int(u[j]) % 10
+        if q > max:
+            max = q
+        if q < min:
+            min = q
+
+    for k in range(8):
+        if max == k:
+            max = book[str(k)]
+        if min == k:
+            min = book[str(k)]
+
+    print("Максимальная цифра числа -", i, "-", max, ";", "Минимальная цифра числа - ", i, "-", min)
