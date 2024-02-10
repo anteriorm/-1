@@ -1,37 +1,54 @@
-a = int(input("Кол-во чисел: "))
+import sys
+
+b = input("Кол-во чисел: ")
+
+if b.isdigit():
+    a = int(b)
+else:
+    print("Вы вписали строку, либо не целое число, выполните работу заново")
+    sys.exit()
+
 n = []
 for i in range(a):
-    n.append(input())
+    n.append(input("Введите числа - "))
 print(n)
 
 book = {
-    "0" : "Ноль",
-    "1" : "Один",
-    "2" : "Два",
-    "3" : "Три",
-    "4" : "Четыре",
-    "5" : "Пять",
-    "6" : "Шесть",
-    "7" : "Семь",
+    "0" : "ноль",
+    "1" : "один",
+    "2" : "два",
+    "3" : "три",
+    "4" : "четыре",
+    "5" : "пять",
+    "6" : "шесть",
+    "7" : "семь",
 }
 
 for i in n:
 
-    min = 100000000
-    max = 0
-    u = str(i)
+    if i.isdigit():
 
-    for j in range(len(u)):
-        q = int(u[j]) % 10
-        if q > max:
-            max = q
-        if q < min:
-            min = q
+        min = 100000000
+        max = 0
+        u = str(i)
 
-    for k in range(8):
-        if max == k:
-            max = book[str(k)]
-        if min == k:
-            min = book[str(k)]
+        for j in range(len(u)):
+            q = int(u[j]) % 10
+            if q > max:
+                max = q
+            if q < min:
+                min = q
+        if max > 7:
+            print("СС8 - у вас есть цифры неподходящие условию")
+            break
 
-    print("Максимальная цифра числа -", i, "-", max, ";", "Минимальная цифра числа - ", i, "-", min)
+        for k in range(8):
+            if max == k:
+                max = book[str(k)]
+            if min == k:
+                min = book[str(k)]
+    else:
+        print("Все числа должны быть натуральными, но вы не выполнили условие")
+        break
+
+    print("Максимальная цифра числа -", i, "- это", max, ";", "Минимальная цифра числа - ", i, "- это", min)
